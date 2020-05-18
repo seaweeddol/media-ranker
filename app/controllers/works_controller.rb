@@ -60,6 +60,22 @@ class WorksController < ApplicationController
     end
   end
 
+  def destroy
+    @work = Work.find_by(id: params[:id])
+    if @work.nil?
+      flash[:error] = "A problem occurred. This work does not exist"
+      head :not_found
+      return
+    elsif @work.destroy
+      flash[:success] = "Successfully deleted #{@work.category} #{@work.id}"
+      redirect_to works_path
+      return
+    else
+      flash[:error] = "A problem occurred. Could not delete #{@work.category}"
+      render :show
+      return
+    end
+  end
 
   private
 
