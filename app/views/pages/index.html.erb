@@ -1,36 +1,40 @@
-<section>
-  <h2>Media Spotlight: <%= link_to "#{Work.top_work.title}", work_path(Work.top_work.id) %> by <%= Work.top_work.creator %></h2>
-  <p><%= Work.top_work %> votes - <%= Work.top_work.description %></p>
-</section>
+<% if Work.all == []%>
+  <h2>No works in database. Please add your favorite works!</h2>
+<% else %>
+  <section>
+    <h2>Media Spotlight: <%= link_to "#{Work.top_work.title}", work_path(Work.top_work.id) %> by <%= Work.top_work.creator %></h2>
+    <p><%= Work.top_work %> votes - <%= Work.top_work.description %></p>
+  </section>
 
-<section class="container">
-  <div class="row">
-    <section>
-      <h2>Top Movies</h2>
-      <% Work.top_ten_works("movie").each do |work|%>
-        <h3><%= link_to "#{work.title}", work_path(work.id) %></h3>
-        <h4>by <%= work.creator %></h4>
-        <p><%= work %> votes</p>
-      <% end %>
-    </section>
+  <section class="container">
+    <div class="row">
+      <section>
+        <h2>Top Movies</h2>
+        <% Work.top_ten_works("movie").each do |work|%>
+          <h3><%= link_to "#{work.title}", work_path(work.id) %></h3>
+          <h4>by <%= work.creator %></h4>
+          <p><%= work %> votes</p>
+        <% end %>
+      </section>
 
-    <section>
-      <h2>Top Books</h2>
-      <% Work.top_ten_works("book").each do |work|%>
-        <h3><%= link_to "#{work.title}", work_path(work.id) %></h3>
-        <h4>by <%= work.creator %></h4>
-        <p><%= work %> votes</p>
-      <% end %>
+      <section>
+        <h2>Top Books</h2>
+        <% Work.top_ten_works("book").each do |work|%>
+          <h3><%= link_to "#{work.title}", work_path(work.id) %></h3>
+          <h4>by <%= work.creator %></h4>
+          <p><%= work %> votes</p>
+        <% end %>
 
-    </section>
+      </section>
 
-    <section>
-      <h2>Top Albums</h2>
-      <% Work.top_ten_works("album").each do |work|%>
-        <h3><%= link_to "#{work.title}", work_path(work.id) %></h3>
-        <h4>by <%= work.creator %></h4>
-        <p><%= work %> votes</p>
-      <% end %>
-    </section>
-  </div>
-</section>
+      <section>
+        <h2>Top Albums</h2>
+        <% Work.top_ten_works("album").each do |work|%>
+          <h3><%= link_to "#{work.title}", work_path(work.id) %></h3>
+          <h4>by <%= work.creator %></h4>
+          <p><%= work %> votes</p>
+        <% end %>
+      </section>
+    </div>
+  </section>
+  <% end %>
