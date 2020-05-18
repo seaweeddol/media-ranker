@@ -66,26 +66,41 @@ describe Work do
     end
   end
 
-  # describe 'top work method' do
-  #   it 'should return one work' do
-  #     #Arrange
-  #     one_work = Work.top_work
+  describe 'top work method' do
+    it 'should return one work' do
+      #Arrange
+      one_work = Work.top_work
 
-  #     #Assert
-  #     expect(one_work).must_be_instance_of Work
-  #   end
+      #Assert
+      expect(one_work).must_be_instance_of Work
+    end
 
-  #   it 'should return the work with most votes' do
-  #   end
-  # end
+    it 'should return the work with most votes' do
+    end
+  end
 
-  # describe 'top ten method' do
-  #   it 'should return an array of ten works' do
+  describe 'top ten method' do
+    it 'should return an array' do
+      #Arrange
+      top_ten = Work.top_ten_works("movie")
+
+      #Assert
+      expect(top_ten).must_be_instance_of Array
+    end
+
+    it 'all works returned should belong to the same category' do
+      #Arrange
+      top_ten = Work.top_ten_works("movie")
+
+      #Assert
+      top_ten.each do |work|
+        expect(work.category).must_equal "movie"
+      end
+    end
+
+
+    it 'should return works in descending order by votes' do
       
-  #   end
-
-  #   it 'should return all works if there are less than ten works' do
-      
-  #   end
-  # end
+    end
+  end
 end
