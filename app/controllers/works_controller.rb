@@ -37,6 +37,28 @@ class WorksController < ApplicationController
     end
   end
 
+  def update
+    @work= Work.find_by(id: params[:id])
+    if @work.nil?
+      flash[:error] = "This work does not exist"
+      head :not_found
+      return 
+    elsif @work.update(
+      title: params[:work][:title],
+      category: params[:work][:category],
+      creator: params[:work][:creator],
+      description: params[:work][:description],
+      publication_year: params[:work][:publication_year]
+    )
+      flash[:success] = "Successfully updated #{@work.category} #{@work.id}"
+      redirect_to work_path(@work.id)
+      return
+    else
+      flash[:error] = "A problem occurred. Could not update #{@work.category}"
+      render :edit
+      return
+    end
+  end
 
 
   private
