@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Votes</th>
+      <th scope="col">Title</th>
+      <th scope="col">Created By</th>
+      <th scope="col">Published</th>
+      <th scope="col">Upvote</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @works.where(category: category).each do |work| %>
+      <tr>
+        <td><%= work %></td>
+        <td><%= link_to "#{work.title}", work_path(work.id) %></td>
+        <td><%= work.creator %></td>
+        <td><%= work.publication_year %></td>
+        <td><%= link_to "Upvote", work_path(work.id), class: "btn btn-primary" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
