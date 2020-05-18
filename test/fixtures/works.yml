@@ -1,0 +1,36 @@
+harry potter:
+  category: book
+  title: Harry Potter and the Goblet of Fire
+  creator: J.K. Rowling
+  description: harry potter gets real
+  publication_year: 2000
+foe:
+  category: book
+  title: Foe
+  creator: Iain Reid
+  description: average dude is supposed to go to space
+  publication_year: 2018
+softsounds:
+  category: album
+  title: Soft Sounds from Another Planet
+  creator: Japanese Breakfast
+  description: soft sounds
+  publication_year: 2017
+anakko:
+  category: album
+  title: Anak Ko
+  creator: Jay Som
+  description: more soft sounds
+  publication_year: 2019
+velocipastor:
+  category: movie
+  title: VelociPastor
+  creator: someone weird
+  description: pastor turned dinosaur
+  publication_year: 2017
+infabric:
+  category: movie
+  title: In Fabric
+  creator: Peter Strickland
+  description: killer dress
+  publication_year: 2019
