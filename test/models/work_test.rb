@@ -46,6 +46,15 @@ describe Work do
       expect(new_work.errors.messages[:title]).must_equal ["can't be blank"]
     end
 
+    it "must have a unique title" do
+      new_work.save
+      another_work = Work.create(title: "test work", category: "book")
+
+      expect(another_work.valid?).must_equal false
+      expect(another_work.errors.messages).must_include :title
+      expect(another_work.errors.messages[:title]).must_equal ["has already been taken"]
+    end
+
     it "must have a category" do
       # Arrange
       new_work.category = nil
@@ -64,6 +73,9 @@ describe Work do
 
   #     #Assert
   #     expect(one_work).must_be_instance_of Work
+  #   end
+
+  #   it 'should return the work with most votes' do
   #   end
   # end
 
