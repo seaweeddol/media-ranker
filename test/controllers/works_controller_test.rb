@@ -174,6 +174,26 @@ describe WorksController do
     end
   end
 
+  describe "destroy" do
+    it "destroys the work instance in db when work exists, then redirects" do
+      # Act-Assert
+      expect {
+        delete work_path(Work.first[:id])
+      }.must_differ "Work.count", -1
 
+      expect(flash[:success]).must_include "Successfully deleted"
+      must_redirect_to works_path
+    end
+
+    it "does not change the db when the work does not exist, then responds with not found" do
+      # Act-Assert
+      expect {
+        delete work_path(-1)
+      }.must_differ "Work.count", 0
+
+      expect(flash[:error]).must_include "A problem occurred. This work does not exist"
+      must_respond_with :not_found
+    end
+  end
 
 end
