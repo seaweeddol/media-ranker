@@ -19,23 +19,23 @@ describe WorksController do
     end
   end
 
-  # describe "show" do
-  #   it "responds with success when showing an existing valid work" do
-  #       # Act
-  #       get work_path(work.id)
+  describe "show" do
+    it "responds with success when showing an existing valid work" do
+        # Act
+        get work_path(Work.first.id)
         
-  #       # Assert
-  #       must_respond_with :success
-  #   end
+        # Assert
+        must_respond_with :success
+    end
 
-  #   it "responds with 404 with an invalid work id" do
-  #       # Act
-  #       get work_path(99999)
+    it "responds with 404 with an invalid work id" do
+        # Act
+        get work_path(99999)
         
-  #       # Assert
-  #       must_respond_with :not_found
-  #   end
-  # end
+        # Assert
+        must_respond_with :not_found
+    end
+  end
 
   describe "new" do
     it "responds with success" do
@@ -69,8 +69,6 @@ describe WorksController do
       expect(new_work.category).must_equal work_hash[:work][:category]
       expect(new_work.creator).must_equal work_hash[:work][:creator]
 
-      
-      must_respond_with :redirect
       must_redirect_to work_path(new_work.id)
     end
 
