@@ -10,6 +10,32 @@
   </head>
 
   <body>
+    <header>
+      <h1><span class="media_ranker">Media Ranker</span> | <span class="">Ranking the best of everything</span></h1>
+    </header>
+    <nav>
+      <ul class="nav">
+        <li class="nav-item">
+          <%= link_to "View top media", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "View all media", works_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Add a new work", new_work_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%#= link_to "View all users", users_path %>
+        </li>
+        <li class="nav-item">
+          <%#= link_to "Logged in as ____", root_path %>
+        </li>
+        <li class="nav-item">
+          <%#= link_to "Log in/out", login_path %>
+        </li>
+
+      </ul>
+    </nav>
     <%= yield %>
   </body>
 </html>
