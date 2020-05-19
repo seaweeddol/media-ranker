@@ -1,0 +1,27 @@
+<h2>User Summary: <%= @user.name %></h2>
+<p>Joined site <%= @user.created_at %></p>
+
+<%# TODO: loop through votes and create table %>
+<h3>Votes</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Media Title</th>
+      <th scope="col">Created By</th>
+      <th scope="col">Published</th>
+      <th scope="col">Category</th>
+      <th scope="col">Voted On</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% # Vote.where(work_id: @work.id).each do |vote| %>
+      <tr>
+        <td>media title</td>
+        <td>created by</td>
+        <td>published</td>
+        <td>category</td>
+        <td>voted on</td>
+      </tr>
+    <% # end %>
+  </tbody>
+</table>

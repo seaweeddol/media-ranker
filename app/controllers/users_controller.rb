@@ -23,4 +23,14 @@ class UsersController < ApplicationController
     flash[:success] = "Successfully logged out"
     redirect_to root_path
   end
+
+  def current
+    @user = User.find_by(id: session[:user_id])
+    if !@user
+      flash[:error] = "You must be logged in to see this page"
+      redirect_to root_path
+      return
+    end
+  end
+
 end
