@@ -17,12 +17,13 @@ class Work < ApplicationRecord
   end
 
   def self.top_ten_works(category)
-    # find all by category
-    all_works = Work.where(category: category)
+    # find all works in category that have at least one vote
+    all_works = Work.where(category: category).joins(:votes)
     
-    # sort by votes
+    # group all_works into an array and then order by count of votes
+    sorted_works = all_works.group('works.id').order('count(votes.id) DESC')
 
     # return first ten items
-    return all_works.sample(10)
+    return sorted_works[0..9]
   end
 end
