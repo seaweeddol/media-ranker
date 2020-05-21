@@ -14,14 +14,15 @@
     </tr>
   </thead>
   <tbody>
-    <% # Vote.where(work_id: @work.id).each do |vote| %>
+    <% @user.votes.each do |vote| %>
       <tr>
-        <td>media title</td>
-        <td>created by</td>
-        <td>published</td>
-        <td>category</td>
-        <td>voted on</td>
+        <% work = Work.find_by(id: vote.work_id) %>
+        <td><%= work.title %></td>
+        <td><%= work.creator %></td>
+        <td><%= work.publication_year %></td>
+        <td><%= work.category %></td>
+        <td><%= vote.created_at.strftime("%b %d, %Y") %></td>
       </tr>
-    <% # end %>
+    <% end %>
   </tbody>
 </table>
