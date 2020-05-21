@@ -6,7 +6,7 @@
 <%= link_to "Back to media ranks", works_path, class: "btn btn-primary" %>
 <%= link_to "Edit", edit_work_path(@work.id), class: "btn btn-primary" %>
 <%# TODO: only show upvote if user is logged in %>
-<%= link_to "Upvote", work_path(@work.id), class: "btn btn-primary" %>
+<%= link_to "Upvote", work_votes_path(@work.id),method: :post, class: "btn btn-primary" %>
 <%= link_to "Delete", work_path(@work.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
 
 <%# TODO: loop through votes and create table %>
