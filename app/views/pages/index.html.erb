@@ -3,7 +3,7 @@
 <% else %>
   <section>
     <h2>Media Spotlight: <%= link_to "#{Work.top_work.title}", work_path(Work.top_work.id) %> by <%= Work.top_work.creator %></h2>
-    <p><%= Work.top_work %> votes - <%= Work.top_work.description %></p>
+    <p><%= Work.top_work.votes.count %> votes - <%= Work.top_work.description %></p>
   </section>
 
   <section class="container">
@@ -13,7 +13,7 @@
         <% Work.top_ten_works("movie").each do |work|%>
           <h3><%= link_to "#{work.title}", work_path(work.id) %></h3>
           <h4>by <%= work.creator %></h4>
-          <p><%= work %> votes</p>
+          <p><%= work.votes.count %> votes</p>
         <% end %>
       </section>
 
@@ -22,7 +22,7 @@
         <% Work.top_ten_works("book").each do |work|%>
           <h3><%= link_to "#{work.title}", work_path(work.id) %></h3>
           <h4>by <%= work.creator %></h4>
-          <p><%= work %> votes</p>
+          <p><%= work.votes.count %> votes</p>
         <% end %>
 
       </section>
@@ -32,7 +32,7 @@
         <% Work.top_ten_works("album").each do |work|%>
           <h3><%= link_to "#{work.title}", work_path(work.id) %></h3>
           <h4>by <%= work.creator %></h4>
-          <p><%= work %> votes</p>
+          <p><%= work.votes.count %> votes</p>
         <% end %>
       </section>
     </div>
