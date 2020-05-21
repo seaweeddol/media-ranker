@@ -10,7 +10,7 @@
 <%= link_to "Delete", work_path(@work.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
 
 <%# TODO: loop through votes and create table %>
-<h3># Votes for this <%= @work.category %></h3>
+<h3><%= @work.votes.count %> Votes for this <%= @work.category %></h3>
 <table class="table">
   <thead>
     <tr>
@@ -19,11 +19,11 @@
     </tr>
   </thead>
   <tbody>
-    <% # Vote.where(work_id: @work.id).each do |vote| %>
+    <% @work.votes.each do |vote| %>
       <tr>
-        <td>user</td>
-        <td>date</td>
+        <td><%= User.find(vote.user_id).name %></td>
+        <td><%= vote.created_at %></td>
       </tr>
-    <% # end %>
+    <% end %>
   </tbody>
 </table>
