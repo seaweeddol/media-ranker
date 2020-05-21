@@ -21,8 +21,9 @@
   <tbody>
     <% @work.votes.each do |vote| %>
       <tr>
+        <%# TODO: create a show view for user and link to it %>
         <td><%= User.find(vote.user_id).name %></td>
-        <td><%= vote.created_at %></td>
+        <td><%= vote.created_at.strftime("%b %d, %Y") %></td>
       </tr>
     <% end %>
   </tbody>
