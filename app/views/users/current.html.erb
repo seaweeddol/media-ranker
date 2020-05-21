@@ -1,5 +1,5 @@
 <h2>User Summary: <%= @user.name %></h2>
-<p>Joined site <%= @user.created_at %></p>
+<p>Joined site <%= @user.created_at.strftime("%b %d, %Y") %></p>
 
 <%# TODO: loop through votes and create table %>
 <h3>Votes</h3>
