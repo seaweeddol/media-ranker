@@ -108,9 +108,18 @@ describe Work do
       end
     end
 
-
     it 'should return works in descending order by votes' do
-      
+      works = Work.where(category: "album")
+      new_user = User.create(name: "Kari")
+
+      works.each do |work|
+        Vote.create(work_id: work.id, user_id: new_user.id)
+      end
+
+      vote_2 = Vote.create(work_id: works[1].id, user_id: new_user.id)
+      top_ten = Work.top_ten_works("album")
+
+      expect(top_ten.first.votes.count).must_equal 2
     end
   end
 end
