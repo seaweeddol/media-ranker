@@ -6,8 +6,14 @@ class Work < ApplicationRecord
   # validates :publication_year, presence: true
 
   def self.top_work
-    # TODO add logic to find work with most votes
-    return Work.find(Work.pluck(:id).sample)
+    top_work = Work.first
+    Work.all.each do |work|
+      if work.votes.count > top_work.votes.count
+        top_work = work
+      end
+    end
+
+    return top_work
   end
 
   def self.top_ten_works(category)
