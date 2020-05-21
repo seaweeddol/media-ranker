@@ -76,6 +76,16 @@ describe Work do
     end
 
     it 'should return the work with most votes' do
+      # Arrange
+      new_work.save
+      new_user = User.create(name: "Kari")
+      vote_1 = Vote.create(work_id: new_work.id, user_id: new_user.id)
+      vote_2 = Vote.create(work_id: new_work.id, user_id: new_user.id)
+
+      work2 = Work.create(title: "another work", category: "book")
+
+      # Assert
+      expect(Work.top_work).must_equal new_work
     end
   end
 
