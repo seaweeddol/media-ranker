@@ -20,20 +20,21 @@ describe Work do
     end
   end
 
-  # describe "relationships" do
-  #   it "can have many votes" do
-  #     # Arrange
-  #     new_work.save
-  #     new_user = User.create(name: "Kari")
-  #     vote_1 = Vote.create(work_id: new_work.id, user_id: new_user.id)
-  #     vote_2 = Vote.create(work_id: new_work.id, user_id: new_user.id)
-  #     # Assert
-  #     expect(new_work.votes.count).must_equal 2
-  #     new_work.votes.each do |vote|
-  #       expect(vote).must_be_instance_of Vote
-  #     end
-  #   end
-  # end
+  describe "relationships" do
+    it "can have many votes" do
+      # Arrange
+      new_work.save
+      new_user = User.create(name: "Kari")
+      vote_1 = Vote.create(work_id: new_work.id, user_id: new_user.id)
+      vote_2 = Vote.create(work_id: new_work.id, user_id: new_user.id)
+      
+      # Assert
+      expect(new_work.votes.count).must_equal 2
+      new_work.votes.each do |vote|
+        expect(vote).must_be_instance_of Vote
+      end
+    end
+  end
 
   describe "validations" do
     it "must have a title" do
