@@ -17,8 +17,8 @@ class Work < ApplicationRecord
   end
 
   def self.top_ten_works(category)
-    # find all works in category that have at least one vote
-    all_works = Work.where(category: category).joins(:votes)
+    # find all works in category
+    all_works = Work.where(category: category).joins("left join votes on votes.work_id = works.id")
     
     # group all_works into an array and then order by count of votes
     sorted_works = all_works.group('works.id').order('count(votes.id) DESC')
