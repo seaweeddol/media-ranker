@@ -10,20 +10,22 @@
 <% end %>
 <%= link_to "Delete", work_path(@work.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
 
-<h3><%= @work.votes.count %> Votes for this <%= @work.category %></h3>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">User</th>
-      <th scope="col">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @work.votes.each do |vote| %>
+<section class="works-votes__container">
+  <h3 class="works-votes__header"><%= @work.votes.count %> Votes for this <%= @work.category %></h3>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= link_to "#{vote.user.name}", user_path(vote.user_id) %><%=  %></td>
-        <td><%= vote.created_at.strftime("%b %d, %Y") %></td>
+        <th scope="col">User</th>
+        <th scope="col">Date</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @work.votes.each do |vote| %>
+        <tr>
+          <td><%= link_to "#{vote.user.name}", user_path(vote.user_id) %><%=  %></td>
+          <td><%= vote.created_at.strftime("%b %d, %Y") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>

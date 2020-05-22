@@ -6,51 +6,55 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" media="screen" href="https://fonts.googleapis.com/css?family=Gudea:400,700|Hammersmith+One">
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header>
-      <h1><span class="media_ranker">Media Ranker</span> | <span class="">Ranking the best of everything</span></h1>
-    </header>
-    <nav>
-      <ul class="nav">
-        <li class="nav-item">
-          <%= link_to "View top media", root_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "View all media", works_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Add a new work", new_work_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "View all users", users_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
+    <header class="app-header__header">
+      <h1><a href="/">Media Ranker</a> <small>Ranking the best of everything</small></h1>
+      <nav class="app-header__nav">
+        <ul class="nav app-header__site-nav-container">
+          <li class="nav-item app-header__nav_item">
+            <%= link_to "View top media", root_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item app-header__nav_item">
+            <%= link_to "View all media", works_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item app-header__nav_item">
+            <%= link_to "Add a new work", new_work_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item app-header__nav_item">
+            <%= link_to "View all users", users_path, class: "nav-link" %>
+          </li>
+        </ul>
+        <ul class="nav app-header__user-nav-container">
           <% if session[:user_id]%>
-            <%= link_to "Logged in as #{User.find_by(id: session[:user_id]).name}", current_user_path, class: "nav-link" %>
+            <li class="nav-item app-header__nav_item">
+              <%= link_to "Logged in as #{User.find_by(id: session[:user_id]).name}", current_user_path, class: "btn btn-primary" %>
+            </li>
           <% end %>
-        </li>
-        <li class="nav-item">
-          <% if !session[:user_id]%>
-            <%= link_to "Log in", login_path, class: "nav-link" %>
-          <% else %>
-            <%= link_to "Log out", logout_path, method: :post, class: "nav-link" %>
-          <% end %>
-        </li>
+          <li class="nav-item app-header__nav_item">
+            <% if !session[:user_id]%>
+              <%= link_to "Log in", login_path, class: "btn btn-primary" %>
+            <% else %>
+              <%= link_to "Log out", logout_path, method: :post, class: "btn btn-primary" %>
+            <% end %>
+          </li>
+        </ul>
+      </nav>
+    </header>
 
-      </ul>
-    </nav>
-
-    <section class="flash-msg__section">
+    <section class="alert__container">
       <% flash.each do |name, message| %>
-        <strong class="<%= name %>">
+        <div class="alert alert-<%= name %>">
           <%= message %>
-        </strong>
+        </div>
       <% end %>
     </section>
     
+    <main>
     <%= yield %>
+    </main>
   </body>
 </html>
