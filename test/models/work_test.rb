@@ -47,13 +47,20 @@ describe Work do
       expect(new_work.errors.messages[:title]).must_equal ["can't be blank"]
     end
 
-    it "must have a unique title" do
+    it "must have a unique title within its category" do
       new_work.save
       another_work = Work.create(title: "test work", category: "book")
 
       expect(another_work.valid?).must_equal false
       expect(another_work.errors.messages).must_include :title
       expect(another_work.errors.messages[:title]).must_equal ["has already been taken"]
+    end
+
+    it "can add the same title to a different category" do
+      new_work.save
+      another_work = Work.create(title: "test work", category: "movie")
+
+      expect(another_work.valid?).must_equal true
     end
 
     it "must have a category" do
