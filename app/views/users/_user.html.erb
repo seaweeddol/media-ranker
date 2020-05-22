@@ -1,0 +1,27 @@
+<h2>User Summary: <%= user.name %></h2>
+<p>Joined site <%= user.created_at.strftime("%b %d, %Y") %></p>
+
+<h3>Votes</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Media Title</th>
+      <th scope="col">Created By</th>
+      <th scope="col">Published</th>
+      <th scope="col">Category</th>
+      <th scope="col">Voted On</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% user.votes.each do |vote| %>
+      <tr>
+        <% work = Work.find_by(id: vote.work_id) %>
+        <td><%= work.title %></td>
+        <td><%= work.creator %></td>
+        <td><%= work.publication_year %></td>
+        <td><%= work.category %></td>
+        <td><%= vote.created_at.strftime("%b %d, %Y") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
