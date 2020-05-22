@@ -9,7 +9,6 @@
 <%= link_to "Upvote", work_votes_path(@work.id),method: :post, class: "btn btn-primary" %>
 <%= link_to "Delete", work_path(@work.id), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
 
-<%# TODO: loop through votes and create table %>
 <h3><%= @work.votes.count %> Votes for this <%= @work.category %></h3>
 <table class="table">
   <thead>
@@ -21,8 +20,7 @@
   <tbody>
     <% @work.votes.each do |vote| %>
       <tr>
-        <%# TODO: create a show view for user and link to it %>
-        <td><%= User.find(vote.user_id).name %></td>
+        <td><%= link_to "#{vote.user.name}", user_path(vote.user_id) %><%=  %></td>
         <td><%= vote.created_at.strftime("%b %d, %Y") %></td>
       </tr>
     <% end %>
