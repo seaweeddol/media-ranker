@@ -7,11 +7,11 @@ class VotesController < ApplicationController
         flash[:success] = "Successfully upvoted!"
         redirect_to request.referrer
       else
-        flash[:error] = "A problem occurred: Could not upvote"
+        flash[:warning] = "A problem occurred: Could not upvote"
         redirect_to request.referrer
       end
     else
-      flash[:error] = "A problem occurred: You must log in to do that"
+      flash[:warning] = "A problem occurred: You must log in to do that"
       redirect_to request.referrer
     end
   end

@@ -148,7 +148,7 @@ describe WorksController do
         patch work_path(97777), params: work_hash
       }.must_differ "Work.count", 0
 
-      expect(flash[:error]).must_equal "This work does not exist"
+      expect(flash[:warning]).must_equal "This work does not exist"
       must_respond_with :not_found
     end
 
@@ -169,7 +169,7 @@ describe WorksController do
 
       # Assert
       # Check that the controller redirects
-      expect(flash[:error]).must_include "A problem occurred. Could not update"
+      expect(flash[:warning]).must_include "A problem occurred. Could not update"
       must_respond_with :success
     end
   end
@@ -191,7 +191,7 @@ describe WorksController do
         delete work_path(-1)
       }.must_differ "Work.count", 0
 
-      expect(flash[:error]).must_include "A problem occurred. This work does not exist"
+      expect(flash[:warning]).must_include "A problem occurred. This work does not exist"
       must_respond_with :not_found
     end
   end

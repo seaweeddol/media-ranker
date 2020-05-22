@@ -40,7 +40,7 @@ class WorksController < ApplicationController
   def update
     @work= Work.find_by(id: params[:id])
     if @work.nil?
-      flash[:error] = "This work does not exist"
+      flash[:warning] = "This work does not exist"
       head :not_found
       return 
     elsif @work.update(
@@ -54,7 +54,7 @@ class WorksController < ApplicationController
       redirect_to work_path(@work.id)
       return
     else
-      flash[:error] = "A problem occurred. Could not update #{@work.category}"
+      flash[:warning] = "A problem occurred. Could not update #{@work.category}"
       render :edit
       return
     end
@@ -63,7 +63,7 @@ class WorksController < ApplicationController
   def destroy
     @work = Work.find_by(id: params[:id])
     if @work.nil?
-      flash[:error] = "A problem occurred. This work does not exist"
+      flash[:warning] = "A problem occurred. This work does not exist"
       head :not_found
       return
     elsif @work.destroy
@@ -71,7 +71,7 @@ class WorksController < ApplicationController
       redirect_to works_path
       return
     else
-      flash[:error] = "A problem occurred. Could not delete #{@work.category}"
+      flash[:warning] = "A problem occurred. Could not delete #{@work.category}"
       render :show
       return
     end

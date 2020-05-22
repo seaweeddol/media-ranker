@@ -66,7 +66,7 @@ describe UsersController do
       get current_user_path
 
       # Assert
-      expect(flash[:error]).must_equal "You must be logged in to see this page"
+      expect(flash[:warning]).must_equal "You must be logged in to see this page"
       must_redirect_to root_path
     end
   end
