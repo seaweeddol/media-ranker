@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @works.where(category: category).each do |work| %>
+    <% @works.where(category: category).joins("left join votes on votes.work_id = works.id").group('works.id').order('count(votes.id) DESC').each do |work| %>
       <tr>
         <td><%= work.votes.count %></td>
         <td><%= link_to "#{work.title}", work_path(work.id) %></td>
