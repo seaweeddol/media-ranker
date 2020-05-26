@@ -129,5 +129,44 @@ describe Work do
 
       expect(top_ten.first.votes.count).must_equal 2
     end
+
+    it 'should only return ten works' do
+      album1 = Work.create(category: "album", title: "album 1")
+      album2 = Work.create(category: "album", title: "album 2")
+      album3 = Work.create(category: "album", title: "album 3")
+      album4 = Work.create(category: "album", title: "album 4")
+      album5 = Work.create(category: "album", title: "album 5")
+      album6 = Work.create(category: "album", title: "album 6")
+      album7 = Work.create(category: "album", title: "album 7")
+      album8 = Work.create(category: "album", title: "album 8")
+      album9 = Work.create(category: "album", title: "album 9")
+
+      works = Work.where(category: "album")
+      new_user = User.create(name: "Kari")
+
+      works.each do |work|
+        Vote.create(work_id: work.id, user_id: new_user.id)
+      end
+
+      top_ten = Work.top_ten_works("album")
+
+      expect(top_ten.count).must_equal 10
+    end
+
+    it 'should return ten works even if they have no votes' do
+      album1 = Work.create(category: "album", title: "album 1")
+      album2 = Work.create(category: "album", title: "album 2")
+      album3 = Work.create(category: "album", title: "album 3")
+      album4 = Work.create(category: "album", title: "album 4")
+      album5 = Work.create(category: "album", title: "album 5")
+      album6 = Work.create(category: "album", title: "album 6")
+      album7 = Work.create(category: "album", title: "album 7")
+      album8 = Work.create(category: "album", title: "album 8")
+      album9 = Work.create(category: "album", title: "album 9")
+
+      top_ten = Work.top_ten_works("album")
+      expect(top_ten.count).must_equal 10
+    end
+
   end
 end
